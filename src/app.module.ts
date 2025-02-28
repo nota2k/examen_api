@@ -21,7 +21,7 @@ import { OrderItemsModule } from './order-items/order-items.module';
       username: 'babillon_api',
       password: 'babillon_api',
       database: 'babillon_api',
-      entities: [Product, Category, Order],
+      entities: [Product, Category, Order, OrderItem],
       synchronize: true,
     }),
     ProductsModule,
