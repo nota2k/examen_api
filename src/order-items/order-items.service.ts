@@ -17,7 +17,7 @@ export class OrderItemsService {
   }
 
   async findAll(): Promise<OrderItem[]> {
-    return this.orderItemRepository.find();
+    return this.orderItemRepository.find({relations: ['order']});
   }
 
   async findOne(id: number): Promise<OrderItem> {

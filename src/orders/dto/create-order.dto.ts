@@ -1,3 +1,3 @@
 export class CreateOrderDto {
-  order_date: Date;
+  order_date: string;
 }
