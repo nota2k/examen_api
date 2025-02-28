@@ -5,6 +5,8 @@ import { ProductsController } from './products/products.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Product } from './products/product.entity';
 import { ProductsModule } from './products/products.module';
+import { Category } from './categories/category.entity';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -15,13 +17,13 @@ import { ProductsModule } from './products/products.module';
       username: 'babillon_api',
       password: 'babillon_api',
       database: 'babillon_api',
-      entities: [Product],
+      entities: [Product, Category],
       synchronize: true,
     }),
     ProductsModule,
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-
 export class AppModule {}
