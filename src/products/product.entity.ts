@@ -1,5 +1,5 @@
 
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Category } from '../categories/category.entity';
 
 @Entity()
@@ -19,6 +19,7 @@ export class Product {
   @Column('int')
   stock: number;
 
-  @ManyToOne(() => Category, category => category.id)
+  @ManyToOne(() => Category, (category) => category.products)
+  @JoinColumn({ name: 'category_id' }) // Spécifiez la colonne de clé étrangère
   category: Category;
 }
