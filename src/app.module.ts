@@ -3,7 +3,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProductsController } from './products/products.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
 import { Product } from './products/product.entity';
 import { ProductsModule } from './products/products.module';
 
@@ -21,10 +20,8 @@ import { ProductsModule } from './products/products.module';
     }),
     ProductsModule,
   ],
-  controllers: [AppController, ProductsController],
+  controllers: [AppController],
   providers: [AppService],
 })
 
-export class AppModule {
-  constructor(private dataSource: DataSource) {}
-}
+export class AppModule {}
