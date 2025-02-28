@@ -7,5 +7,14 @@ export class OrderItem {
   id: number;
 
   @Column()
-  name: string;
+  product_id: number;
+
+  @Column()
+  order_id: number;
+
+  @Column()
+  quantity: number;
+
+  @Column()
+  reduction_percentage: number;
 }
