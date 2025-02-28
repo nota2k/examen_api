@@ -11,4 +11,10 @@ export class Product {
 
   @Column()
   description: string;
+
+  @Column('int')
+  price: number;
+
+  @Column('int')
+  stock: number;
 }
