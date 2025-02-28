@@ -7,7 +7,10 @@ import { Product } from './products/product.entity';
 import { ProductsModule } from './products/products.module';
 import { Category } from './categories/category.entity';
 import { CategoriesModule } from './categories/categories.module';
-import 
+import { Order } from './orders/order.entity';
+import { OrdersModule } from './orders/orders.module';
+import { OrderItem } from './order-items/order-item.entity';
+import { OrderItemsModule } from './order-items/order-items.module';
 
 @Module({
   imports: [
@@ -18,11 +21,13 @@ import
       username: 'babillon_api',
       password: 'babillon_api',
       database: 'babillon_api',
-      entities: [Product, Category],
+      entities: [Product, Category, Order],
       synchronize: true,
     }),
     ProductsModule,
     CategoriesModule,
+    OrdersModule,
+    OrderItemsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
