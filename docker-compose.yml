@@ -1,0 +1,25 @@
+services:
+  db:
+    image: mysql:9.2.0
+    container_name: mysql
+    environment:
+      MYSQL_DATABASE: babillon_api
+      MYSQL_USER: babillon_api
+      MYSQL_PASSWORD: babillon_api
+      MYSQL_ROOT_PASSWORD: babillon_api
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+      MYSQL_RANDOM_ROOT_PASSWORD: "no"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql 
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:
