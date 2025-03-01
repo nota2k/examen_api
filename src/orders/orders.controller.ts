@@ -6,6 +6,8 @@ import {
   Put,
   Param,
   Delete,
+  UsePipes,
+  ValidationPipe
 } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { Order } from './order.entity';
@@ -19,6 +21,7 @@ export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
   @Post()
+  @UsePipes(new ValidationPipe({ transform: true }))
   @ApiResponse({
     status: 201,
     description: 'La commande a été créé avec succès.',

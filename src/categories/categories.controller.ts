@@ -6,6 +6,8 @@ import {
   Put,
   Param,
   Delete,
+  UsePipes,
+  ValidationPipe
 } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { Category } from './category.entity';
@@ -23,8 +25,11 @@ export class CategoriesController {
     status: 201,
     description: 'Le produit a été créé avec succès.',
   })
+  @UsePipes(new ValidationPipe({ transform: true }))
   @ApiResponse({ status: 403, description: "Vous n'avez pas l'autorisation" })
-  async create(@Body() createCategoryDto: CreateCategoryDto): Promise<Category> {
+  async create(
+    @Body() createCategoryDto: CreateCategoryDto,
+  ): Promise<Category> {
     return this.categoriesService.create(createCategoryDto);
   }
 
@@ -44,7 +49,10 @@ export class CategoriesController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updatecategorytDto: UpdateCategoryDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updatecategorytDto: UpdateCategoryDto,
+  ) {
     return this.categoriesService.update(+id, updatecategorytDto);
   }
 
