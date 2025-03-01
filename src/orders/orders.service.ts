@@ -31,12 +31,17 @@ export class OrdersService {
     return orders;
   }
 
-  async getTotalPrice(id: number): Promise<Order> {
-    const orders = await this.ordersRepository.findOne({ where: { id } });
-    if (!orders) {
+  async getTotalPrice(id: number): Promise<number> {
+          
+    const orderItems = await this.orderItemsRepository.find({ where: { order: { id: id } } });
+    let totalPrice = 0;
+    if (!orderItems) {
       throw new NotFoundException(`Orders with ID ${id} not found`);
     }
-    return orders;
+    orderItems.forEach((orderItem) => {
+      totalPrice += 1;
+    });
+    return totalPrice;
   }
 
   async findByOrderId(orderId: number): Promise<OrderItem[]> {
