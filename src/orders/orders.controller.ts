@@ -43,11 +43,13 @@ export class OrdersController {
     return this.ordersService.findOne(+id);
   }
 
+  @Get(':id/total_price')
+  getTotalPrice(@Param('id') id: string) {
+    return this.ordersService.findOne(+id);
+  }
+
   @Put(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateOrderDto: UpdateOrderDto,
-  ) {
+  update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
     return this.ordersService.update(+id, updateOrderDto);
   }
 

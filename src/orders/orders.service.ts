@@ -28,6 +28,14 @@ export class OrdersService {
     return orders;
   }
 
+  async getTotalPrice(id: number): Promise<Order> {
+    const orders = await this.ordersRepository.findOne({ where: { id } });
+    if (!orders) {
+      throw new NotFoundException(`Orders with ID ${id} not found`);
+    }
+    return orders;
+  }
+
   async update(id: number, updateOrderDto: UpdateOrderDto): Promise<Order> {
     const orders = await this.findOne(id);
     const updatedOrders = { ...orders, ...updateOrderDto };

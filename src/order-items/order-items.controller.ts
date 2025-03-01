@@ -21,7 +21,7 @@ export class OrderItemsController {
   @Post()
   @ApiResponse({
     status: 201,
-    description: 'Le produit a été créé avec succès.',
+    description: 'La commande a été créé avec succès.',
   })
   @ApiResponse({ status: 403, description: "Vous n'avez pas l'autorisation" })
   async create(
@@ -33,9 +33,13 @@ export class OrderItemsController {
   @Get()
   @ApiResponse({
     status: 200,
-    description: 'Toutes les catégories ont été récupérés avec succès.',
+    description: 'Toutes les commandes ont été récupérés avec succès.',
   })
   @ApiResponse({ status: 403, description: "Vous n'avez pas l'autorisation" })
+  @ApiResponse({
+    status: 500,
+    description: 'Problème lors de la récupération des commandes',
+  })
   findAll(): Promise<OrderItem[]> {
     return this.orderItemsService.findAll();
   }
