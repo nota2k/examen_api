@@ -47,4 +47,17 @@ export class OrderItemsService {
     }
     await this.orderItemRepository.remove(orderItem);
   }
+
+  async removeProductByOrderId(orderId: number, productId: number): Promise<void> {
+    const orderItems = await this.orderItemRepository.findOne({
+      where: { order:{ id: orderId }, product:{id: productId} },
+    });
+    if (!orderId) {
+      throw new NotFoundException(`OrderItem with ID ${orderId} not found`);
+    }
+    if (!orderItems) {
+      throw new NotFoundException(`OrderItem with order ID ${orderId} and product ID ${productId} not found`);
+    }
+    await this.orderItemRepository.delete(orderItems.id);
+  }
 }
