@@ -24,6 +24,6 @@ export class CreateProductDto {
   stock: number;
 
   @ApiProperty({ type: CategoryDto })
-  @IsNotEmpty({ message: 'Le nom du produit est requis.' })
+  @IsNotEmpty({ message: 'La catégorie du produit est requis.' })
   categorie?: CategoryDto;
 }
