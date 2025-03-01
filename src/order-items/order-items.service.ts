@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CreateOrderItemDto } from './dto/create-orderItem.dto';
 import { UpdateOrderItemDto } from './dto/update-orderItem.dto';
 
+
 @Injectable()
 export class OrderItemsService {
   constructor(
@@ -17,7 +18,7 @@ export class OrderItemsService {
   }
 
   async findAll(): Promise<OrderItem[]> {
-    return this.orderItemRepository.find({relations: ['order']});
+    return this.orderItemRepository.find({ relations: ['order'] });
   }
 
   async findOne(id: number): Promise<OrderItem> {
