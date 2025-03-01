@@ -24,9 +24,7 @@ export class OrdersController {
     description: 'La commande a été créé avec succès.',
   })
   @ApiResponse({ status: 403, description: "Vous n'avez pas l'autorisation" })
-  async create(
-    @Body() createOrderDto: CreateOrderDto,
-  ): Promise<Order> {
+  async create(@Body() createOrderDto: CreateOrderDto): Promise<Order> {
     return this.ordersService.create(createOrderDto);
   }
 
