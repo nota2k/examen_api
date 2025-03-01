@@ -4,12 +4,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { Product } from 'src/products/product.entity';
 
 @Injectable()
 export class CategoriesService {
   constructor(
     @InjectRepository(Category)
     private readonly CategoriesRepository: Repository<Category>,
+    @InjectRepository(Product)
+    private readonly ProductsRepository: Repository<Product>,
   ) {}
 
   async create(createCategoriesDto: CreateCategoryDto): Promise<Category> {
@@ -21,11 +24,19 @@ export class CategoriesService {
   }
 
   async findOne(id: number): Promise<Category> {
-    const Categories = await this.CategoriesRepository.findOne({ where: { id } });
+    const Categories = await this.CategoriesRepository.findOne({
+      where: { id },
+    });
     if (!Categories) {
       throw new NotFoundException(`Categories with ID ${id} not found`);
     }
     return Categories;
+  }
+
+  async findProductsByCategoryId(categoryId: number): Promise<Product[]> {
+    return this.ProductsRepository.find({
+      where: { category: { id: categoryId } },
+    });
   }
 
   async update(

@@ -48,6 +48,11 @@ export class CategoriesController {
     return this.categoriesService.findOne(+id);
   }
 
+  @Get(':id/products')
+  findProductsByCategoryId(@Param('id') id: string) {
+    return this.categoriesService.findProductsByCategoryId(+id);
+  }
+
   @Put(':id')
   update(
     @Param('id') id: string,
