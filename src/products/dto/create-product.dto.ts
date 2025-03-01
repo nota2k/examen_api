@@ -23,7 +23,7 @@ export class CreateProductDto {
   @IsNumber()
   stock: number;
 
-  @ApiProperty({ type: CategoryDto })
+  @ApiProperty()
   @IsNotEmpty({ message: 'La catégorie du produit est requis.' })
-  categorie?: CategoryDto;
+  category_id: number;
 }
